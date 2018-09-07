@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration scan="true" scanPeriod="1 seconds" debug="true">
+
+    <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
+    <timestamp key="byHour" datePattern="yyyyMMdd_HH"/>
+    <timestamp key="byMinute" datePattern="yyyyMMdd'T'HH:mm"/>
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+
+    <property name="pattern" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%file:%line] - %msg%n"/>
+    <property name="charsetEncoding" value="UTF-8"/>
+
+    <!--控制台日志-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${pattern}</pattern>
+            <charset>${charsetEncoding}</charset>
+        </encoder>
+    </appender>
+
+    <!--滚动文件日志-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logback/mylog.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logback/mylog.%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--设置多个级别的日志-->
+    <root level="debug">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+</configuration>
