@@ -13,7 +13,7 @@
   </head>
   <body>
 
-
+  <div id="ck">1</div>
   <table align="center" border="1" cellspacing="0" cellpadding="0">
       <tr>
           <th>编号</th>
@@ -34,6 +34,8 @@
                   <input type="submit" value="删除" onclick="al('确认删除${user.no} 吗？')">
 
               </form>
+
+              <input type="checkbox" value="${user.no}" name="ck"/>
           </td>
           <%--<td>--%>
           <%--<a href="delete?no=${user.no}">1</a>--%>
@@ -41,6 +43,7 @@
       </tr>
       </c:forEach>
   </table>
+  <input type="button" onclick="delAll()" value="1"/>
         <form  action="query" method="post">
            no: <input type="text" name="no" >
           <button type="submit" >submit</button>
@@ -49,6 +52,23 @@
 <script  type="text/javascript">
     function al(msg){
         confirm(msg);
+    }
+
+    function delAll() {
+
+        var arr = [];
+        //根据 标签的name取得所有复选框
+        var ck = document.getElementsByName("ck");
+        //将已经选中的复选框放入数组中
+        for (var i = 0; i < ck.length; i++) {
+            if (ck[i].checked == true) {
+                arr.push(ck[i].value);
+
+            }
+            alert(arr)
+
+
+        }
     }
 
 </script>
