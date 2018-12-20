@@ -13,7 +13,7 @@
   </head>
   <body>
 
-  <div id="ck">1</div>
+  <div id="ck">经常性</div>
   <table align="center" border="1" cellspacing="0" cellpadding="0">
       <tr>
           <th>编号</th>
